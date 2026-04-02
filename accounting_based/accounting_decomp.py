@@ -98,14 +98,19 @@ def generate_synthetic_mcd_data(start: str = "2024-01-01", end: str = "2025-12-3
                         gpu *= {"drive_thru": 1.00, "digital": 1.01, "delivery": 1.10, "instore": 0.99}[channel]
                         gpu *= {"none": 1.00, "offer": 1.00, "reward": 1.00, "bogo": 0.98}[promo_type]
 
-                        gross_sales = units * gpu
+                        original_price_sales = units * gpu
                         discount_per_offer_txn = {"none": 0.00, "offer": 1.15, "reward": 0.72, "bogo": 1.55}[promo_type]
                         discount_scale = {"drive_thru": 1.00, "digital": 1.10, "delivery": 1.05, "instore": 0.96}[channel]
                         discount_amount = offer_gc * discount_per_offer_txn * discount_scale
 
-                        gross_sales = max(0.0, gross_sales + rng.normal(0, gross_sales * 0.015))
+                        original_price_sales = max(0.0, original_price_sales + rng.normal(0, original_price_sales * 0.015))
                         discount_amount = max(0.0, discount_amount + rng.normal(0, max(0.2, discount_amount * 0.04)))
-                        net_sales = max(0.0, gross_sales - discount_amount)
+                        original_price_sales = round(original_price_sales, 2)
+                        discount_amount = round(discount_amount, 2)
+                        if discount_amount > original_price_sales:
+                            discount_amount = original_price_sales
+                        # Enforce net = original - discount so aggregate AUR = GPU - DPU in ratio decomps
+                        net_sales = round(original_price_sales - discount_amount, 2)
 
                         rows.append(
                             {
@@ -122,9 +127,9 @@ def generate_synthetic_mcd_data(start: str = "2024-01-01", end: str = "2025-12-3
                                 "offer_gc": offer_gc,
                                 "reward_gc": reward_gc,
                                 "units": units,
-                                "gross_sales": round(gross_sales, 2),
-                                "discount_amount": round(discount_amount, 2),
-                                "net_sales": round(net_sales, 2),
+                                "original_price_sales": original_price_sales,
+                                "discount_amount": discount_amount,
+                                "net_sales": net_sales,
                             }
                         )
 
@@ -135,7 +140,7 @@ def generate_synthetic_mcd_data(start: str = "2024-01-01", end: str = "2025-12-3
     df["ac"] = np.where(df["gc"] > 0, df["net_sales"] / df["gc"], np.nan)
     df["upt"] = np.where(df["gc"] > 0, df["units"] / df["gc"], np.nan)
     df["aur"] = np.where(df["units"] > 0, df["net_sales"] / df["units"], np.nan)
-    df["gross_price_per_unit"] = np.where(df["units"] > 0, df["gross_sales"] / df["units"], np.nan)
+    df["original_price_per_unit"] = np.where(df["units"] > 0, df["original_price_sales"] / df["units"], np.nan)
     df["discount_per_unit"] = np.where(df["units"] > 0, df["discount_amount"] / df["units"], np.nan)
     return df
 
@@ -365,6 +370,66 @@ def ratio_hierarchy_decomp(df: pd.DataFrame, numerator_col: str, denominator_col
     return pd.DataFrame(rows)
 
 
+def merge_aur_gpu_discount_ratio_decomps(
+    aur_df: pd.DataFrame,
+    gpu_df: pd.DataFrame,
+    dpu_df: pd.DataFrame,
+    *,
+    keys: Sequence[str] = ("hierarchy_name", "level", "node_key", "path"),
+) -> pd.DataFrame:
+    """Join AUR, original price / unit, and discount / unit ratio decompositions on ``keys``.
+
+    When data satisfy ``net_sales = original_price_sales - discount_amount`` (row-level),
+    ``total_abs_root`` for AUR equals ``gpu.total_abs_root - dpu.total_abs_root`` per row.
+
+    If tiny residuals remain (rounding / external feeds), ``total_abs_root_*_adj`` split the residual
+    so ``gpu_adj - dpu_adj == aur.total_abs_root`` exactly.
+    """
+    for name, df in [("aur", aur_df), ("gpu", gpu_df), ("dpu", dpu_df)]:
+        miss = [k for k in keys if k not in df.columns]
+        if miss:
+            raise ValueError(f"{name} df missing columns: {miss}")
+
+    a_cols = {
+        "total_abs_root": "total_abs_root_aur",
+        "mix_abs_root": "mix_abs_root_aur",
+        "within_abs_root": "within_abs_root_aur",
+        "ratio_base": "ratio_base_aur",
+        "ratio_current": "ratio_current_aur",
+    }
+    g_cols = {
+        "total_abs_root": "total_abs_root_gpu",
+        "mix_abs_root": "mix_abs_root_gpu",
+        "within_abs_root": "within_abs_root_gpu",
+        "ratio_base": "ratio_base_gpu",
+        "ratio_current": "ratio_current_gpu",
+    }
+    d_cols = {
+        "total_abs_root": "total_abs_root_dpu",
+        "mix_abs_root": "mix_abs_root_dpu",
+        "within_abs_root": "within_abs_root_dpu",
+        "ratio_base": "ratio_base_dpu",
+        "ratio_current": "ratio_current_dpu",
+    }
+    keep_metric = list(a_cols.keys())
+    a = aur_df[list(keys) + [c for c in keep_metric if c in aur_df.columns]].rename(columns=a_cols)
+    g = gpu_df[list(keys) + [c for c in keep_metric if c in gpu_df.columns]].rename(columns=g_cols)
+    d = dpu_df[list(keys) + [c for c in keep_metric if c in dpu_df.columns]].rename(columns=d_cols)
+    merged = a.merge(g, on=keys, how="inner").merge(d, on=keys, how="inner")
+    merged["implied_aur_from_gpu_dpu"] = merged["total_abs_root_gpu"] - merged["total_abs_root_dpu"]
+    merged["residual_aur"] = merged["total_abs_root_aur"] - merged["implied_aur_from_gpu_dpu"]
+    abs_g = merged["total_abs_root_gpu"].abs()
+    abs_d = merged["total_abs_root_dpu"].abs()
+    denom = abs_g + abs_d
+    tol = 1e-8
+    w_g = np.where(denom > tol, abs_g / denom, 0.5)
+    w_d = 1.0 - w_g
+    res = merged["residual_aur"]
+    merged["total_abs_root_gpu_adj"] = merged["total_abs_root_gpu"] + res * w_g
+    merged["total_abs_root_dpu_adj"] = merged["total_abs_root_dpu"] - res * w_d
+    return merged
+
+
 def sales_gc_ac_bridge(df: pd.DataFrame, sales_col: str = "net_sales", gc_col: str = "gc", period_col: str = "year", base_period=2024, current_period=2025, split_interaction_half: bool = False) -> pd.DataFrame:
     base_sales = df.loc[df[period_col] == base_period, sales_col].sum()
     current_sales = df.loc[df[period_col] == current_period, sales_col].sum()
@@ -413,7 +478,7 @@ def run_accounting_decomp(
         "ac": (sales_metric, "gc"),
         "upt": ("units", "gc"),
         "aur": (sales_metric, "units"),
-        "gross_price_per_unit": ("gross_sales", "units"),
+        "original_price_per_unit": ("original_price_sales", "units"),
         "discount_per_unit": ("discount_amount", "units"),
     }
     hierarchy_map = hierarchy_map or {}
