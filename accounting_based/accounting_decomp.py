@@ -370,6 +370,39 @@ def ratio_hierarchy_decomp(df: pd.DataFrame, numerator_col: str, denominator_col
     return pd.DataFrame(rows)
 
 
+def ac_entity_mix_within_decomp(
+    df: pd.DataFrame,
+    entity_col: str,
+    *,
+    period_col: str = "year",
+    base_period=2024,
+    current_period=2025,
+    sales_col: str = "net_sales",
+    gc_col: str = "gc",
+) -> pd.DataFrame:
+    """Decompose aggregate AC (``sales_col`` / ``gc``) YoY into **mix** and **within** by one entity.
+
+    For each segment of ``entity_col``, at level 1:
+
+    - **mix** (``mix_abs_root``): shift in GC share × segment AC in the base period.
+    - **within** (``within_abs_root``): current GC share × (segment AC current − base).
+
+    Row-level identities match ``ratio_hierarchy_decomp`` with ``hierarchy=[entity_col]``; see
+    ``calc_formula`` on those rows. Root (level 0) has ``mix_abs_root=0`` and ``within_abs_root``
+    equal to total AC change.
+    """
+    return ratio_hierarchy_decomp(
+        df,
+        sales_col,
+        gc_col,
+        [entity_col],
+        "ac",
+        period_col,
+        base_period,
+        current_period,
+    )
+
+
 def merge_aur_gpu_discount_ratio_decomps(
     aur_df: pd.DataFrame,
     gpu_df: pd.DataFrame,
