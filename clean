@@ -1,1 +1,16 @@
+To help shape the roadmap skeleton slide, here are my quick thoughts:
+
+I think the roadmap should start with the current challenges: limited business alignment on model results, missing domains causing contribution misallocation, and data gaps that prevent the model from fully covering all business drivers.
+
+For the ideal state, we should redesign the methodology to separate **protected foundation / BAU** from **growth momentum**. This helps properly credit foundation domains, because their value may not always be incremental growth, but they protect and stabilize the business base. We should also build more domain-level analysis, potentially using prior-informed or Bayesian approaches, instead of relying only on one full regression model.
+
+We also need to address the data and ways-of-working gaps. Business domain experts should be involved from the beginning to align on methodology, assumptions, priors, data needs, and contribution estimates. This should be a cross-functional effort, not just one analytics team working alone.
+
+Suggested roadmap milestones:
+
+1. Align on the ideal-state framework.
+2. Align on methodology and domain definitions.
+3. Produce initial domain-level contribution estimates using prior analysis and model outputs.
+4. Build the full waterfall view.
+5. Incorporate the output into regular leadership presentations.
 
