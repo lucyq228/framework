@@ -1,0 +1,21 @@
+﻿record_id,gc_decomp_bucket,gc_decomp_bucket_l2,driver_group,Topline KPI,Sub KPI,Drill-down KPI,State
+R007,Foundation Protection,Restaurant Foundation,Speed,Service Time (weighted OEPE + R2P),OEPE,,Directional
+R007,Foundation Protection,Restaurant Foundation,Speed,Service Time (weighted OEPE + R2P),R2P,,Directional
+R007,Foundation Protection,Restaurant Foundation,Speed,Service Time (weighted OEPE + R2P),Dapart Speed,Breakfast,Directional
+R007,Foundation Protection,Restaurant Foundation,Speed,Service Time (weighted OEPE + R2P),Dapart Speed,Lunch,Directional
+R007,Foundation Protection,Restaurant Foundation,Speed,Service Time (weighted OEPE + R2P),Dapart Speed,Dinner,Directional
+R007,Foundation Protection,Restaurant Foundation,Speed,Service Time (weighted OEPE + R2P),P90 speed,OEPE,Directional
+R007,Foundation Protection,Restaurant Foundation,Speed,Service Time (weighted OEPE + R2P),P90 speed,R2P,Directional
+R007,Foundation Protection,Restaurant Foundation,Speed,Service Time (weighted OEPE + R2P),Promotion window speed,LTO1,Directional
+R007,Foundation Protection,Restaurant Foundation,Speed,Service Time (weighted OEPE + R2P),Promotion window speed,LTO2,Directional
+R007,Foundation Protection,Restaurant Foundation,Speed,Service Time (weighted OEPE + R2P),Promotion window speed,LTO3,Directional
+R013,Foundation Protection,Commercial BAU,Menu,Menu Mix Coverage Rate,Price Tier,Core,Answerable
+R013,Foundation Protection,Commercial BAU,Menu,Menu Mix Coverage Rate,Price Tier,Value,Answerable
+R013,Foundation Protection,Commercial BAU,Menu,Menu Mix Coverage Rate,Price Tier,Premium,Answerable
+R013,Foundation Protection,Commercial BAU,Menu,Menu Mix Coverage Rate,Category Mix,Chicken,Answerable
+R013,Foundation Protection,Commercial BAU,Menu,Menu Mix Coverage Rate,Category Mix,Beef,Answerable
+R013,Foundation Protection,Commercial BAU,Menu,Menu Mix Coverage Rate,Category Mix,Beverage,Answerable
+R013,Foundation Protection,Commercial BAU,Menu,Menu Mix Coverage Rate,Category Mix,Desert,Answerable
+R013,Foundation Protection,Commercial BAU,Menu,Menu Mix Coverage Rate,Attachment,Combo,Answerable
+R013,Foundation Protection,Commercial BAU,Menu,Menu Mix Coverage Rate,Attachment,Drink,Answerable
+R013,Foundation Protection,Commercial BAU,Menu,Menu Mix Coverage Rate,Attachment,Desert,Answerable

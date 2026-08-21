@@ -1,0 +1,34 @@
+﻿node_id:ID,name,node_type:LABEL,state,color,record_id,level
+bucket|foundation_protection,Foundation Protection,GCDecompBucket,,#4B78C2,,0
+l2|foundation_protection|restaurant_foundation,Restaurant Foundation,GCDecompBucketL2,,#4B78C2,,1
+driver|foundation_protection|restaurant_foundation|speed,Speed,DriverGroup,Directional,#F2C94C,R007,2
+topline_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p,Service Time (weighted OEPE + R2P),ToplineKPI,Directional,#F2C94C,R007,3
+sub_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|oepe,OEPE,SubKPI,Directional,#F2C94C,R007,4
+sub_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|r2p,R2P,SubKPI,Directional,#F2C94C,R007,4
+sub_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|dapart_speed,Dapart Speed,SubKPI,Directional,#F2C94C,R007,4
+drill_down_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|dapart_speed|breakfast,Breakfast,DrillDownKPI,Directional,#F2C94C,R007,5
+drill_down_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|dapart_speed|lunch,Lunch,DrillDownKPI,Directional,#F2C94C,R007,5
+drill_down_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|dapart_speed|dinner,Dinner,DrillDownKPI,Directional,#F2C94C,R007,5
+sub_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|p90_speed,P90 speed,SubKPI,Directional,#F2C94C,R007,4
+drill_down_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|p90_speed|oepe,OEPE,DrillDownKPI,Directional,#F2C94C,R007,5
+drill_down_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|p90_speed|r2p,R2P,DrillDownKPI,Directional,#F2C94C,R007,5
+sub_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|promotion_window_speed,Promotion window speed,SubKPI,Directional,#F2C94C,R007,4
+drill_down_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|promotion_window_speed|lto1,LTO1,DrillDownKPI,Directional,#F2C94C,R007,5
+drill_down_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|promotion_window_speed|lto2,LTO2,DrillDownKPI,Directional,#F2C94C,R007,5
+drill_down_kpi|foundation_protection|restaurant_foundation|speed|service_time_weighted_oepe_r2p|promotion_window_speed|lto3,LTO3,DrillDownKPI,Directional,#F2C94C,R007,5
+l2|foundation_protection|commercial_bau,Commercial BAU,GCDecompBucketL2,,#4B78C2,,1
+driver|foundation_protection|commercial_bau|menu,Menu,DriverGroup,Answerable,#6FB24A,R013,2
+topline_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate,Menu Mix Coverage Rate,ToplineKPI,Answerable,#6FB24A,R013,3
+sub_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|price_tier,Price Tier,SubKPI,Answerable,#6FB24A,R013,4
+drill_down_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|price_tier|core,Core,DrillDownKPI,Answerable,#6FB24A,R013,5
+drill_down_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|price_tier|value,Value,DrillDownKPI,Answerable,#6FB24A,R013,5
+drill_down_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|price_tier|premium,Premium,DrillDownKPI,Answerable,#6FB24A,R013,5
+sub_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|category_mix,Category Mix,SubKPI,Answerable,#6FB24A,R013,4
+drill_down_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|category_mix|chicken,Chicken,DrillDownKPI,Answerable,#6FB24A,R013,5
+drill_down_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|category_mix|beef,Beef,DrillDownKPI,Answerable,#6FB24A,R013,5
+drill_down_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|category_mix|beverage,Beverage,DrillDownKPI,Answerable,#6FB24A,R013,5
+drill_down_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|category_mix|desert,Desert,DrillDownKPI,Answerable,#6FB24A,R013,5
+sub_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|attachment,Attachment,SubKPI,Answerable,#6FB24A,R013,4
+drill_down_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|attachment|combo,Combo,DrillDownKPI,Answerable,#6FB24A,R013,5
+drill_down_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|attachment|drink,Drink,DrillDownKPI,Answerable,#6FB24A,R013,5
+drill_down_kpi|foundation_protection|commercial_bau|menu|menu_mix_coverage_rate|attachment|desert,Desert,DrillDownKPI,Answerable,#6FB24A,R013,5
