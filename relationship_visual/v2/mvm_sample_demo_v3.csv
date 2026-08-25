@@ -1,0 +1,160 @@
+﻿gc_decomp_bucket,gc_decomp_bucket_l2,driver_group,KPI,Drill-down KPI,State
+Foundation Protection,Restaurant Foundation,"Speed
+(Weighted Service Time)",OEPE,,Directional
+Foundation Protection,Restaurant Foundation,"Speed
+(Weighted Service Time)",R2P,,Directional
+Foundation Protection,Restaurant Foundation,"Speed
+(Weighted Service Time)",Dapart Speed,Breakfast,Directional
+Foundation Protection,Restaurant Foundation,"Speed
+(Weighted Service Time)",Dapart Speed,Lunch,Directional
+Foundation Protection,Restaurant Foundation,"Speed
+(Weighted Service Time)",Dapart Speed,Dinner,Directional
+Foundation Protection,Restaurant Foundation,"Speed
+(Weighted Service Time)",P90 speed,OEPE,Directional
+Foundation Protection,Restaurant Foundation,"Speed
+(Weighted Service Time)",P90 speed,R2P,Directional
+Foundation Protection,Restaurant Foundation,"Speed
+(Weighted Service Time)",Promotion window speed,LTO1,Directional
+Foundation Protection,Restaurant Foundation,"Speed
+(Weighted Service Time)",Promotion window speed,LTO2,Directional
+Foundation Protection,Restaurant Foundation,"Speed
+(Weighted Service Time)",Promotion window speed,LTO3,Directional
+Foundation Protection,Restaurant Foundation,Supply Chain,Availability %,,Blocked
+Foundation Protection,Restaurant Foundation,Supply Chain,Out-of-stock,,Blocked
+Foundation Protection,Restaurant Foundation,"Technology
+(Stability)",Uptime rate,POS,Blocked
+Foundation Protection,Restaurant Foundation,"Technology
+(Stability)",Uptime rate,App,Blocked
+Foundation Protection,Restaurant Foundation,"Technology
+(Stability)",Uptime rate,Kiosk,Blocked
+Foundation Protection,Restaurant Foundation,"Technology
+(Stability)",Response time,POS,Blocked
+Foundation Protection,Restaurant Foundation,"Technology
+(Stability)",Response time,App,Blocked
+Foundation Protection,Restaurant Foundation,"Technology
+(Stability)",Response time,Kiosk,Blocked
+Foundation Protection,Restaurant Foundation,"Staffing
+(Stability)",Labor coverage,,Blocked
+Foundation Protection,Restaurant Foundation,"Staffing
+(Stability)",Satisfaction,,Blocked
+Foundation Protection,Restaurant Foundation,"Staffing
+(Stability)",Training met,,Blocked
+Foundation Protection,Restaurant Foundation,Customer Satisfaction,OSAT,Food Quality,Directional
+Foundation Protection,Restaurant Foundation,Customer Satisfaction,OSAT,Order Acuracy,Directional
+Foundation Protection,Restaurant Foundation,Customer Satisfaction,OSAT,Speed of Service,Directional
+Foundation Protection,Restaurant Foundation,Customer Satisfaction,Compliants,Food Quality,Directional
+Foundation Protection,Restaurant Foundation,Customer Satisfaction,Compliants,Order Acuracy,Directional
+Foundation Protection,Restaurant Foundation,Customer Satisfaction,Compliants,Speed of Service,Directional
+Foundation Protection,Restaurant Foundation,"Operations
+(Hours)",Running hours,,Blocked
+Foundation Protection,Commercial BAU,"Menu
+(Menu Mix Coverage)",Price Tier,Core,Answerable
+Foundation Protection,Commercial BAU,"Menu
+(Menu Mix Coverage)",Price Tier,Value,Answerable
+Foundation Protection,Commercial BAU,"Menu
+(Menu Mix Coverage)",Price Tier,Premium,Answerable
+Foundation Protection,Commercial BAU,"Menu
+(Menu Mix Coverage)",Category Mix,Chicken,Answerable
+Foundation Protection,Commercial BAU,"Menu
+(Menu Mix Coverage)",Category Mix,Beef,Answerable
+Foundation Protection,Commercial BAU,"Menu
+(Menu Mix Coverage)",Category Mix,Beverage,Answerable
+Foundation Protection,Commercial BAU,"Menu
+(Menu Mix Coverage)",Category Mix,Desert,Answerable
+Foundation Protection,Commercial BAU,"Menu
+(Menu Mix Coverage)",Attachment,Combo,Answerable
+Foundation Protection,Commercial BAU,"Menu
+(Menu Mix Coverage)",Attachment,Drink,Answerable
+Foundation Protection,Commercial BAU,"Menu
+(Menu Mix Coverage)",Attachment,Desert,Answerable
+Foundation Protection,Commercial BAU,"Menu
+(Menu Mix Coverage)",Menu Items Complexity,,Answerable
+Foundation Protection,Commercial BAU,"Pricing
+(Realization Gap)",Price Tier,Core,Answerable
+Foundation Protection,Commercial BAU,"Pricing
+(Realization Gap)",Price Tier,Value,Answerable
+Foundation Protection,Commercial BAU,"Pricing
+(Realization Gap)",Price Tier,Premium,Answerable
+Foundation Protection,Commercial BAU,"Media
+(Investment Index)",Spend,Brand Awareness,Directional
+Foundation Protection,Commercial BAU,"Media
+(Investment Index)",Spend,Channels,Directional
+Foundation Protection,Commercial BAU,"Media
+(Investment Index)",Exposure,Brand Awareness,Blocked
+Foundation Protection,Commercial BAU,"Media
+(Investment Index)",Exposure,Channels,Blocked
+Foundation Protection,Commercial BAU,"Loyalty
+(Customer Base)",Active Members,,Answerable
+Foundation Protection,Commercial BAU,"Loyalty
+(Customer Base)",Visit Frequency,,Answerable
+Foundation Protection,Commercial BAU,"Loyalty
+(Customer Base)",Churn,,Answerable
+Foundation Protection,Commercial BAU,"Delivery
+(Availability)",Delivery Coverage %,,Directional
+External Context,External Context,"Weather
+(Extreme Weather Days)",Rain Days,,Answerable
+External Context,External Context,"Weather
+(Extreme Weather Days)",Heat Days,,Answerable
+External Context,External Context,"Weather
+(Extreme Weather Days)",Snow Days,,Answerable
+External Context,External Context,"Macro
+(Macro Index)",Inflation,,Answerable
+External Context,External Context,"Macro
+(Macro Index)",CPI,,Answerable
+External Context,External Context,"Macro
+(Macro Index)",Gas Price,,Answerable
+External Context,External Context,"Macro
+(Macro Index)","Food Away from Home
+(FAFH)",,Answerable
+External Context,External Context,"Competition
+(Competition Index)",Competitor Pricing,,Blocked
+External Context,External Context,"Competition
+(Competition Index)",Competitor Promo,,Blocked
+External Context,External Context,"Competition
+(Competition Index)",Competitor Media,,Blocked
+External Context,External Context,Seasonality,The number of weeks,,Answerable
+External Context,External Context,Seasonality,Holidays,,Blocked
+External Context,External Context,Market,QSR Category Growth,,Directional
+Growth Momentum,Growth Momentum,"Pricing
+(Price Change)",Price Tier,Core,Answerable
+Growth Momentum,Growth Momentum,"Pricing
+(Price Change)",Price Tier,Value,Answerable
+Growth Momentum,Growth Momentum,"Pricing
+(Price Change)",Price Tier,Premium,Answerable
+Growth Momentum,Growth Momentum,"Promo
+(Discount Change)",Offer Type,BOGO,Answerable
+Growth Momentum,Growth Momentum,"Promo
+(Discount Change)",Offer Type,Dollar-Off,Answerable
+Growth Momentum,Growth Momentum,"Promo
+(Discount Change)",Offer Type,Free Item,Answerable
+Growth Momentum,Growth Momentum,"Promo
+(Discount Change)",Offer Type,Bundle,Answerable
+Growth Momentum,Growth Momentum,"Promo
+(Discount Change)",Scale,National,Blocked
+Growth Momentum,Growth Momentum,"Promo
+(Discount Change)",Scale,Local,Blocked
+Growth Momentum,Growth Momentum,"Promo
+(Discount Change)",Channels,Delivery,Answerable
+Growth Momentum,Growth Momentum,"Promo
+(Discount Change)",Channels,Mobile,Answerable
+Growth Momentum,Growth Momentum,"Media
+(Investment Change)",Spend,Campaign-driven,Blocked
+Growth Momentum,Growth Momentum,"Media
+(Investment Change)",Spend,Conversion Media,Blocked
+Growth Momentum,Growth Momentum,"Media
+(Investment Change)",Exposure,Campaign-driven,Blocked
+Growth Momentum,Growth Momentum,"Media
+(Investment Change)",Exposure,Conversion Media,Blocked
+Growth Momentum,Growth Momentum,"Menu
+(LTO)",Seasonal,,Blocked
+Growth Momentum,Growth Momentum,"Menu
+(LTO)",Partnership & Co-branded,,Blocked
+Growth Momentum,Growth Momentum,"Menu
+(LTO)",Premium,,Blocked
+Growth Momentum,Growth Momentum,"Loyalty
+(Targeted Campaigns)",Campaign Types,,Blocked
+Growth Momentum,Growth Momentum,"Loyalty
+(Targeted Campaigns)",Personalization,,Blocked
+Growth Momentum,Growth Momentum,"Loyalty
+(Targeted Campaigns)",Rewards,,Answerable
+,,,,,
