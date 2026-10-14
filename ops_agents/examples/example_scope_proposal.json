@@ -1,0 +1,119 @@
+{
+  "project_name": "PACE-CSAT Correlation (Canada, UK&I)",
+  "business_context": "The Gold Standard Execution KPI weights PACE (what the restaurant executed) and CSAT (what customers experienced) 50/50 for Taste and for Hospitality. Combining them is only defensible if we understand how they relate: whether they measure related things, where they diverge, and why.",
+  "decision_supported": "Inform the GSE KPI design: whether a 50/50 PACE+CSAT index is coherent, which PACE scoring variant to use, and which time alignment and reporting grain make the two comparable. No immediate decision depends on it.",
+  "markets": ["Canada", "United Kingdom", "Ireland"],
+  "period": {"start": "2025-01-01", "end": "2026-09-30", "include_2025": true},
+  "visit_types": ["RGR", "CFV"],
+  "primary_scoring": "progressive",
+  "compare_scoring": "conservative",
+  "primary_grain": "visit",
+  "restaurant_period": "year",
+  "primary_csat_window": "pm30",
+  "decisions": {
+    "general_service_questions": "exclude",
+    "local_core_products": "replace_unavailable",
+    "proposed_mappings": "exclude"
+  },
+  "min_sample": {"min_n_correlation": 30, "min_csat_responses": 20},
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "Higher progressive PACE is associated with higher CSAT, for both Taste and Hospitality, within each market group.",
+      "rationale": "The core question: do execution and perception move together at all?",
+      "support_criteria": "Within-market-group r > 0 with a 95% CI excluding 0 and surviving FDR, at visit and restaurant-year grain.",
+      "pathway": [
+        {"tool": "describe-distributions", "params": {}, "purpose": "Check ceiling effects and discreteness before correlating"},
+        {"tool": "pairwise-correlation", "params": {}, "purpose": "Pooled visit-level association with cluster bootstrap CIs"},
+        {"tool": "simpsons-paradox-check", "params": {"group_by": "market_group"}, "purpose": "Test whether pooling markets distorts the estimate"},
+        {"tool": "pairwise-correlation", "params": {"grain": "restaurant_period", "market_group": "Canada"}, "purpose": "Restaurant-year association in Canada"},
+        {"tool": "pairwise-correlation", "params": {"grain": "restaurant_period", "market_group": "UK&I"}, "purpose": "Restaurant-year association in UK&I"},
+        {"tool": "permutation-test", "params": {}, "purpose": "Assumption-free significance, shuffled within market group"},
+        {"tool": "controlled-regression", "params": {}, "purpose": "Slope after market, visit type and month controls"}
+      ]
+    },
+    {
+      "id": "H2",
+      "statement": "The association is strongest when CSAT is measured close to the visit date.",
+      "rationale": "PACE scores a moment; CSAT spans a period. Misaligned windows dilute the relationship.",
+      "support_criteria": "A window around the visit (pm7-pm60) has a higher r than the calendar-year window.",
+      "pathway": [
+        {"tool": "lag-window-scan", "params": {}, "purpose": "Correlation by CSAT window around the visit"},
+        {"tool": "csat-reliability", "params": {}, "purpose": "How much of window CSAT is sampling noise"}
+      ]
+    },
+    {
+      "id": "H3",
+      "statement": "Unannounced CFV visits track CSAT better than announced RGRV visits.",
+      "rationale": "RGRV tests capability; CFV tests the everyday experience customers rate.",
+      "support_criteria": "RGRV scores higher than CFV and CFV r with CSAT >= RGRV r.",
+      "pathway": [
+        {"tool": "rgrv-cfv-gap", "params": {}, "purpose": "Size of the announced-visit gap and which visit type tracks CSAT"}
+      ]
+    },
+    {
+      "id": "H4",
+      "statement": "The Hospitality relationship differs by channel.",
+      "rationale": "Drive Thru interactions are short and human; Mobile orders skip the order-taker.",
+      "support_criteria": "Channel-specific r differs (Fisher z) and the channel-matched pairing is at least as strong as all-channel CSAT.",
+      "pathway": [
+        {"tool": "segment-correlation", "params": {"measures": ["hospitality"], "segments": ["csat_channel", "channel_tested", "market"]}, "purpose": "Correlation by CSAT channel and tested channel"},
+        {"tool": "segment-correlation", "params": {"grain": "restaurant_period", "segments": ["restaurant_type", "volume_band"]}, "purpose": "Correlation by restaurant type and CSAT volume band"},
+        {"tool": "component-correlation", "params": {}, "purpose": "Which product, channel, or touchpoint tracks CSAT most"}
+      ]
+    },
+    {
+      "id": "H5",
+      "statement": "Progressive scoring differentiates restaurants better than conservative scoring and tracks CSAT at least as well.",
+      "rationale": "The brief asks to use progressive for statistics and compare it with conservative.",
+      "support_criteria": "Progressive has more distinct values and fewer ties, and r with CSAT >= conservative r.",
+      "pathway": [
+        {"tool": "scoring-variant-comparison", "params": {}, "purpose": "Spread, ties, rank agreement, and r for each variant"},
+        {"tool": "point-biserial", "params": {}, "purpose": "CSAT when a visit passes vs fails conservatively"}
+      ]
+    },
+    {
+      "id": "H6",
+      "statement": "CSAT drops more steeply for the weakest executors (threshold).",
+      "rationale": "Customers may tolerate small lapses but react to poor execution.",
+      "support_criteria": "Binned means and LOWESS show a steeper slope at low PACE, and a breakpoint model beats linear.",
+      "pathway": [
+        {"tool": "binned-means", "params": {"grain": "restaurant_period"}, "purpose": "Mean CSAT by PACE band"},
+        {"tool": "lowess-spline", "params": {"grain": "restaurant_period"}, "purpose": "Shape of the relationship"},
+        {"tool": "breakpoint-regression", "params": {"grain": "restaurant_period"}, "purpose": "Locate a threshold"}
+      ]
+    },
+    {
+      "id": "H7",
+      "statement": "Taste and Hospitality share a common 'well-run restaurant' factor, so the indexes overlap.",
+      "rationale": "If both sides are driven by one factor, the 50/50 Taste/Hospitality split double counts it.",
+      "support_criteria": "Cross-measure correlations approach same-measure ones, and shared variance is large in commonality analysis.",
+      "pathway": [
+        {"tool": "taste-vs-hospitality-crossover", "params": {"grain": "restaurant_period"}, "purpose": "Same vs cross correlations"},
+        {"tool": "commonality-analysis", "params": {}, "purpose": "Unique vs shared variance"},
+        {"tool": "index-weight-sensitivity", "params": {}, "purpose": "Which side really drives the GSE KPI ranking"}
+      ]
+    },
+    {
+      "id": "H8",
+      "statement": "PACE and CSAT agree on which restaurants are best and worst.",
+      "rationale": "A combined KPI is used to rank restaurants; agreement matters more than r.",
+      "support_criteria": "Top and bottom quintile overlap well above 20% chance within market group.",
+      "pathway": [
+        {"tool": "rank-agreement", "params": {}, "purpose": "Quintile overlap and tertile kappa"},
+        {"tool": "quadrant-agreement", "params": {}, "purpose": "Size and profile of divergent quadrants"},
+        {"tool": "between-within-correlation", "params": {}, "purpose": "Stable restaurant differences vs good and bad days"},
+        {"tool": "multiple-testing", "params": {}, "purpose": "FDR correction across every test in the run (run last)"}
+      ]
+    }
+  ],
+  "threats": [
+    "Market confounding: UK&I and Canada may differ in survey culture.",
+    "Only 3-5 PACE visits per restaurant per year.",
+    "Ceiling effects in progressive scores.",
+    "Low-volume restaurants have noisy CSAT.",
+    "Observational data: no causal claims."
+  ],
+  "user_questions": [],
+  "out_of_scope": ["Causal effect of PACE on CSAT", "Individual restaurant rankings for performance management"]
+}

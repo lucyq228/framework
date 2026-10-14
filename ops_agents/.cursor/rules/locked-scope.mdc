@@ -1,0 +1,11 @@
+---
+description: The approved scope is a locked contract; artifacts are written only by scripts
+alwaysApply: true
+---
+
+# Locked scope
+
+- `runs/<run>/approved_scope.json` is fingerprinted in `scope.lock.json`. Never edit it. Scripts refuse to run if it changes. A different market, period, scoring, grain, window, decision, or hypothesis means a new run with new approval.
+- Only the manager locks a scope (`approve_scope.py`), and only after the user's explicit approval, quoted in `--user-confirmation`. Never approve, answer a scope question, or agree to acquire data on the user's behalf.
+- Analyses outside the approved plan must go through `run_tool.py --followup-reason`, which records them as follow-ups and still enforces feasibility.
+- Never hand-edit run artifacts (JSON, Parquet, PNG, XLSX, HTML). Agents write only their drafts in `runs/<run>/drafts/`, and the save scripts validate those drafts before anything becomes an artifact.

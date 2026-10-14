@@ -1,0 +1,659 @@
+# Shared correlation assets (the tool shelf).
+#
+# One entry per tool. Agents pick tools from here; check_feasibility.py matches
+# `requires` against the data inventory; the runner merges `defaults` with the
+# scope and the step's params. The data science team owns this file and the
+# implementations in corr_core/tools/.
+#
+# phase:  intake | eda | quality | feature | analysis | reporting
+# status: supported | partial (runs with a stated compromise) | blocked (data does not exist)
+# requires.sources: all must be available. requires.optional: unlocks more when present.
+# Every analysis tool also accepts the common params: measures, scoring, grain, window,
+# csat_channel, visit_types, period, market_group, market, min_n, min_csat_responses.
+# fixed_grain: true  -> the method defines its own grain (stated in `method`); `grain` is rejected.
+# common_params: false -> the tool takes only its own params.
+
+version: 1
+common_analysis_params: [measures, scoring, grain, window, csat_channel, visit_types, period, market_group, market, min_n, min_csat_responses]
+pace_csat: &pace_csat [pace_product, pace_service, csat_daily]
+
+tools:
+  # ------------------------------------------------------------------ Connectors & platform
+  - id: gcp-connector
+    family: Connectors & platform
+    phase: intake
+    question: Which source extracts exist, how large are they, and what dates do they cover?
+    method: Local file loader with the BigQuery adapter interface (backend=local in this demo)
+    params: [backend]
+    requires: {sources: []}
+    outputs: [source inventory, date ranges]
+    guardrails: [Never print raw rows]
+    status: supported
+  - id: confluence-mcp
+    family: Connectors & platform
+    phase: intake
+    question: What do the background documents say?
+    method: Extract text from context/ (md, txt, docx); list images with JPG previews for the agent to view
+    params: []
+    requires: {sources: []}
+    outputs: [context_text.md, document index]
+    guardrails: [Treat document claims as context, not data]
+    status: supported
+  - id: github-mcp
+    family: Connectors & platform
+    phase: intake
+    question: Which tools are missing from the shelf?
+    method: Record a tool-gap request for the data science team (stands in for a GitHub issue)
+    params: [title, description, requested_by]
+    requires: {sources: []}
+    outputs: [tool_gaps.json]
+    status: supported
+  - id: profile-sources
+    family: Connectors & platform
+    phase: intake
+    question: What is the schema, grain, key uniqueness, and coverage of each source?
+    method: Column dtypes, null rates, distinct counts, declared-grain uniqueness, date ranges
+    params: []
+    requires: {sources: []}
+    outputs: [per-source profile]
+    status: supported
+  - id: data-quality-check
+    family: Connectors & platform
+    phase: quality
+    question: What data problems must be handled before scoring and analysis?
+    method: Duplicates, impossible counts, key match, local question mapping, coverage gaps, channel-assessment rules
+    params: []
+    requires: {sources: [pace_product, pace_service, csat_daily]}
+    outputs: [checks with status pass/info/warn/fail and the handling rule]
+    guardrails: [A fail blocks feature creation until the manager decides]
+    status: supported
+
+  # ------------------------------------------------------------------ EDA
+  - id: eda-coverage
+    family: Exploratory data analysis
+    phase: eda
+    question: How many restaurants, visits, and CSAT responses do we have, and how thin are they?
+    method: Counts by market, year, and visit type; visits per restaurant per year; CSAT responses per restaurant-month
+    params: [min_csat_responses]
+    requires: {sources: *pace_csat}
+    outputs: [coverage tables]
+    status: supported
+  - id: eda-pace-pass-rates
+    family: Exploratory data analysis
+    phase: eda
+    question: What are the PACE pass rates by product, category, channel, touchpoint, visit type, and market?
+    method: Question-level pass rates and visit-level conservative and progressive scores
+    params: []
+    requires: {sources: [pace_product, pace_service]}
+    outputs: [pass-rate tables, score distributions, charts]
+    status: supported
+  - id: eda-failure-reasons
+    family: Exploratory data analysis
+    phase: eda
+    question: Why do products and service journeys fail?
+    method: Failure dimension counts by product category; top service failure reasons by touchpoint
+    params: []
+    requires: {sources: [pace_product, pace_service]}
+    outputs: [failure tables]
+    status: supported
+  - id: eda-csat-rates
+    family: Exploratory data analysis
+    phase: eda
+    question: What are CSAT Taste and Hospitality top-two-box rates by market, channel, and weekday?
+    method: Response-weighted top-two-box rates
+    params: []
+    requires: {sources: [csat_daily]}
+    outputs: [CSAT tables, chart]
+    status: supported
+  - id: eda-trends
+    family: Exploratory data analysis
+    phase: eda
+    question: How do PACE and CSAT move month by month, and 2025 vs 2026?
+    method: Monthly means by market group
+    params: []
+    requires: {sources: *pace_csat}
+    outputs: [monthly tables, trend chart]
+    status: supported
+  - id: eda-segment-profile
+    family: Exploratory data analysis
+    phase: eda
+    question: How do PACE and CSAT differ by restaurant type, ownership, volume band, and region?
+    method: Means and counts by restaurant attribute
+    params: []
+    requires: {sources: *pace_csat, optional: {restaurant_attributes: "without it only market-level profiles exist"}}
+    outputs: [segment profile tables]
+    status: supported
+  - id: eda-summary-pack
+    family: Exploratory data analysis
+    phase: eda
+    question: What general observations should scoping and synthesis know about?
+    method: Deterministic observations with numbers (sample sizes, RGRV-CFV gap, scoring harshness, market levels, weakest components)
+    params: []
+    requires: {sources: *pace_csat}
+    outputs: [observations list]
+    status: supported
+
+  # ------------------------------------------------------------------ Feature creation
+  - id: apply-question-mapping
+    family: Feature creation
+    phase: feature
+    question: Which local questions map to global ones under the approved decisions?
+    method: question_mapping.csv; confirmed always mapped, proposed per decision, unmapped dropped
+    params: []
+    requires: {sources: [question_mapping]}
+    outputs: [mapping used]
+    status: supported
+  - id: score-pace-taste
+    family: Feature creation
+    phase: feature
+    question: What is each visit's PACE Taste result?
+    method: Product PASS -> visit conservative (all pass) and progressive (share passed) over the 5 index categories; local core replaces unavailable categories
+    params: []
+    requires: {sources: [pace_product]}
+    outputs: [visit taste scores, category and failure-dimension columns]
+    status: supported
+  - id: score-pace-hospitality
+    family: Feature creation
+    phase: feature
+    question: What is each visit's PACE Hospitality result?
+    method: Touchpoint -> channel journey PASS -> visit conservative and progressive over assessed channels
+    params: []
+    requires: {sources: [pace_service]}
+    outputs: [visit hospitality scores, channel and touchpoint columns]
+    status: supported
+  - id: aggregate-csat
+    family: Feature creation
+    phase: feature
+    question: What are cleaned CSAT top-two-box rates and response counts?
+    method: Drop duplicates and impossible rows; aggregate by restaurant, period, and channel
+    params: []
+    requires: {sources: [csat_daily]}
+    outputs: [cleaning report, CSAT by market]
+    status: supported
+  - id: align-time-windows
+    family: Feature creation
+    phase: feature
+    question: What CSAT did customers report around each visit?
+    method: CSAT sums for pre7, pre30, post30, pm7..pm90, calendar month, quarter, year around each visit, per channel
+    params: []
+    requires: {sources: *pace_csat}
+    outputs: [window coverage]
+    status: supported
+  - id: build-analysis-dataset
+    family: Feature creation
+    phase: feature
+    question: Build every analysis table for the locked scope
+    method: Runs mapping, scoring, CSAT cleaning, windows, restaurant-period roll-up, GSE index; writes datasets/*.parquet
+    params: []
+    requires: {sources: *pace_csat}
+    outputs: [visit_scores, csat_windows, restaurant_period, restaurant_period_csat, csat_monthly, market_scorecard]
+    status: supported
+  - id: compute-gse-index
+    family: Feature creation
+    phase: feature
+    question: What are the Taste Index, Hospitality Index, and GSE KPI?
+    method: Deck method, 50% PACE + 50% CSAT, conservative and progressive
+    params: []
+    requires: {sources: *pace_csat}
+    outputs: [market scorecard, restaurant index distribution]
+    status: supported
+
+  # ------------------------------------------------------------------ Distributions & variation
+  - id: describe-distributions
+    family: Distributions & variation
+    phase: analysis
+    question: What do PACE and CSAT distributions look like (ceiling, floor, discreteness)?
+    method: Moments, quantiles, share at 0 and 100%, distinct values, skew
+    params: []
+    requires: {sources: *pace_csat}
+    outputs: [distribution table]
+    assumptions: []
+    guardrails: [Bounded discrete PACE scores need rank-based cross-checks]
+    status: supported
+  - id: variance-decomposition
+    fixed_grain: true
+    family: Distributions & variation
+    phase: analysis
+    question: How much of PACE and CSAT variation is between restaurants vs within a restaurant over time?
+    method: One-way ANOVA ICC(1) by restaurant
+    params: []
+    requires: {sources: *pace_csat, needs_repeat_visits: true}
+    outputs: [ICC table]
+    status: supported
+  - id: csat-reliability
+    family: Distributions & variation
+    phase: analysis
+    question: How much of observed CSAT variation is sampling noise, and how many responses are needed?
+    method: Binomial sampling variance vs observed variance; Spearman-Brown responses needed for a target reliability
+    params: [target_reliability]
+    requires: {sources: *pace_csat, optional: {restaurant_attributes: "adds reliability by volume band"}}
+    outputs: [reliability by group, responses needed]
+    status: supported
+
+  # ------------------------------------------------------------------ Pairwise association
+  - id: pairwise-correlation
+    family: Pairwise association
+    phase: analysis
+    question: How strongly do PACE and CSAT move together?
+    method: Pearson, Spearman, Kendall; restaurant-cluster bootstrap CIs
+    params: [methods, bootstrap]
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [r by method with CI and p]
+    assumptions: [Rows within a restaurant are not independent; the bootstrap resamples restaurants]
+    guardrails: [Association is not causation, Report within-market results when markets differ in level]
+    status: supported
+  - id: weighted-correlation
+    family: Pairwise association
+    phase: analysis
+    question: Does the correlation change when noisy (low-response) rows count less?
+    method: Response-weighted Pearson with cluster bootstrap CI
+    params: []
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [weighted vs unweighted r]
+    status: supported
+  - id: point-biserial
+    fixed_grain: true
+    family: Pairwise association
+    phase: analysis
+    question: How different is CSAT when a visit passes vs fails under conservative scoring?
+    method: Point-biserial correlation and mean CSAT by pass/fail (visit grain)
+    params: []
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [CSAT if pass vs fail, r_pb]
+    status: supported
+  - id: disattenuated-correlation
+    family: Pairwise association
+    phase: analysis
+    question: How strong would the relationship be without measurement noise on either side?
+    method: r / sqrt(reliability_PACE x reliability_CSAT); PACE reliability from ICC with Spearman-Brown
+    params: []
+    requires: {sources: *pace_csat, needs_repeat_visits: true, min_n: 30}
+    outputs: [observed and corrected r, reliabilities]
+    guardrails: [The corrected value is an upper bound, not an observed fact]
+    status: supported
+  - id: permutation-test
+    family: Pairwise association
+    phase: analysis
+    question: Could the correlation be chance, without normality assumptions?
+    method: Shuffle CSAT within strata (default market group), 1000 permutations
+    params: [n_permutations, strata]
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [permutation p]
+    status: supported
+  - id: multiple-testing
+    common_params: false
+    family: Pairwise association
+    phase: analysis
+    question: Which results survive correction for the number of tests run?
+    method: Benjamini-Hochberg FDR across every finding with a p-value in the run (run last)
+    params: [alpha]
+    requires: {sources: []}
+    outputs: [q-values per finding]
+    guardrails: [Always run after all other analyses]
+    status: supported
+
+  # ------------------------------------------------------------------ Component decomposition
+  - id: component-correlation
+    family: Component decomposition
+    phase: analysis
+    question: Which product category, channel, or touchpoint tracks CSAT most closely?
+    method: Correlation of each component pass rate with the matching CSAT measure
+    params: []
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [r per component, forest chart]
+    status: supported
+  - id: failure-reason-analysis
+    family: Component decomposition
+    phase: analysis
+    question: Do appearance, temperature, taste, or texture failures relate to CSAT Taste?
+    method: Visits with vs without each failure type (point-biserial)
+    params: []
+    requires: {sources: *pace_csat}
+    outputs: [CSAT Taste by failure dimension]
+    status: partial
+    limitation: Dimensions are recorded only on failures and CSAT has no dimension split; full dimension results need pace_dimension_results
+    unlocks_with: [pace_dimension_results]
+  - id: product-level-csat
+    family: Component decomposition
+    phase: analysis
+    question: Does product-specific PACE execution match product-specific satisfaction?
+    method: Match product checks to CSAT responses about the same product
+    params: []
+    requires: {sources: [pace_product, csat_product_level]}
+    outputs: []
+    status: blocked
+  - id: taste-vs-hospitality-crossover
+    family: Component decomposition
+    phase: analysis
+    question: Do Taste and Hospitality carry shared information (halo)?
+    method: Same-measure vs cross-measure correlations; CSAT Taste vs CSAT Hospitality
+    params: []
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [pair correlations, matrix]
+    status: supported
+
+  # ------------------------------------------------------------------ Panel effect
+  - id: between-within-correlation
+    fixed_grain: true
+    family: Panel effect
+    phase: analysis
+    question: Is the relationship about which restaurants are better, or about a restaurant's good and bad days?
+    method: Correlation of restaurant means (between) and of within-restaurant deviations (within)
+    params: []
+    requires: {sources: *pace_csat, needs_repeat_visits: true, min_n: 30}
+    outputs: [between and within r]
+    status: supported
+  - id: mixed-effects-model
+    fixed_grain: true
+    family: Panel effect
+    phase: analysis
+    question: What is the PACE-CSAT slope after allowing every restaurant its own baseline?
+    method: Linear mixed model, random intercept by restaurant, fixed effects for controls
+    params: [controls]
+    requires: {sources: *pace_csat, needs_repeat_visits: true, min_n: 50}
+    outputs: [slope per 10pp, restaurant ICC]
+    status: supported
+  - id: fixed-effects-panel
+    fixed_grain: true
+    family: Panel effect
+    phase: analysis
+    question: How does the slope change as market, month, and restaurant fixed effects are added?
+    method: OLS with cluster-robust errors, four specifications
+    params: []
+    requires: {sources: *pace_csat, needs_repeat_visits: true, min_n: 50}
+    outputs: [slope by specification]
+    status: supported
+
+  # ------------------------------------------------------------------ Segmentation & heterogeneity
+  - id: segment-correlation
+    family: Segmentation & heterogeneity
+    phase: analysis
+    question: Does the correlation differ by market, region, restaurant type, ownership, volume, visit type, or channel?
+    method: Correlation per segment level with Fisher CIs; minimum-n suppression; CSAT channel as a segment
+    params: [segments]
+    segment_param: segments
+    requires: {sources: *pace_csat, min_n: 30, optional: {restaurant_attributes: "unlocks region, restaurant type, ownership, volume band, channel flags"}}
+    outputs: [r per segment level, forest chart]
+    guardrails: [Small segments are suppressed, Correct for multiple testing]
+    status: supported
+  - id: segment-difference-test
+    family: Segmentation & heterogeneity
+    phase: analysis
+    question: Are segment differences real?
+    method: Interaction F-test (slope x segment) and Fisher z for each level vs the rest
+    params: [segments]
+    segment_param: segments
+    requires: {sources: *pace_csat, min_n: 30, optional: {restaurant_attributes: "unlocks attribute segments"}}
+    outputs: [interaction p, level vs rest tests]
+    status: supported
+  - id: simpsons-paradox-check
+    family: Segmentation & heterogeneity
+    phase: analysis
+    question: Does pooling markets distort the relationship?
+    method: Pooled vs within-group (demeaned) correlation; flags sign flips and large gaps
+    params: [group_by, flag_gap]
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [pooled and within r, flag, scatter]
+    guardrails: [If flagged, within-group results are the primary estimate]
+    status: supported
+  - id: min-sample-guard
+    family: Segmentation & heterogeneity
+    phase: analysis
+    question: Which segments have enough data to analyse?
+    method: Rows and restaurants per segment level vs the minimum n
+    params: [segments]
+    segment_param: segments
+    requires: {sources: *pace_csat}
+    outputs: [supported and suppressed levels]
+    status: supported
+
+  # ------------------------------------------------------------------ Time & longitudinal
+  - id: lag-window-scan
+    fixed_grain: true
+    family: Time & longitudinal
+    phase: analysis
+    question: Over what CSAT time window around the visit is PACE most related to CSAT?
+    method: Correlation for each window (pre7, pre30, pm7..pm90, post30, month, quarter, year)
+    params: [windows]
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [r by window, chart]
+    status: supported
+  - id: rolling-correlation
+    fixed_grain: true
+    family: Time & longitudinal
+    phase: analysis
+    question: Is the relationship stable over time (2025 vs 2026, by half or quarter)?
+    method: Correlation per period
+    params: [period]
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [r by period, chart]
+    status: supported
+  - id: change-on-change
+    fixed_grain: true
+    family: Time & longitudinal
+    phase: analysis
+    question: When a restaurant's PACE changes between visits, does its CSAT change too?
+    method: Correlation of consecutive-visit differences (default CFV only)
+    params: []
+    requires: {sources: *pace_csat, needs_repeat_visits: true, min_n: 30}
+    outputs: [r of changes]
+    status: supported
+  - id: seasonality-adjust
+    fixed_grain: true
+    family: Time & longitudinal
+    phase: analysis
+    question: Does the correlation survive removing seasonal and market patterns?
+    method: Residualise PACE and CSAT on month-of-year and market, then correlate
+    params: []
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [raw vs adjusted r, CSAT seasonal range]
+    status: supported
+  - id: daypart-alignment
+    family: Time & longitudinal
+    phase: analysis
+    question: Does PACE match CSAT from the same daypart as the visit?
+    method: Match visit time to CSAT response hour
+    params: []
+    requires: {sources: [pace_product, pace_service, csat_daily, visit_timestamp]}
+    outputs: []
+    status: blocked
+
+  # ------------------------------------------------------------------ Consistency
+  - id: quadrant-agreement
+    fixed_grain: true
+    family: Consistency analysis
+    phase: analysis
+    question: Which restaurants are high on one measure and low on the other?
+    method: Within-market median split on PACE and CSAT; quadrant shares; phi
+    params: []
+    requires: {sources: *pace_csat, min_n: 30, optional: {restaurant_attributes: "profiles divergent quadrants by restaurant type"}}
+    outputs: [quadrant shares, restaurant list CSV]
+    guardrails: [Do not rank individual restaurants from 3-5 visits]
+    status: supported
+  - id: rank-agreement
+    fixed_grain: true
+    family: Consistency analysis
+    phase: analysis
+    question: Do PACE and CSAT agree on the best and worst restaurants?
+    method: Within-market percentile ranks; top and bottom quintile overlap; Kendall tau; tertile kappa
+    params: []
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [overlap, tau, kappa]
+    status: supported
+  - id: rgrv-cfv-gap
+    fixed_grain: true
+    family: Consistency analysis
+    phase: analysis
+    question: How much higher do announced RGRV visits score, and which visit type tracks CSAT?
+    method: Paired RGRV vs CFV gap per restaurant-period; r with CSAT for each visit type
+    params: []
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [gap, r by visit type]
+    status: supported
+  - id: scoring-variant-comparison
+    fixed_grain: true
+    family: Consistency analysis
+    phase: analysis
+    question: Does conservative or progressive scoring differentiate restaurants better and track CSAT better?
+    method: Spread, distinct values, ties, rank agreement, r with CSAT for each variant at visit and restaurant grain
+    params: []
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [variant comparison]
+    status: supported
+  - id: bland-altman
+    family: Consistency analysis
+    phase: analysis
+    question: Is there a systematic offset between PACE % and CSAT % on the same scale?
+    method: Mean difference and limits of agreement, overall and by market group
+    params: []
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [offset, limits]
+    status: supported
+
+  # ------------------------------------------------------------------ Nonlinearity & thresholds
+  - id: binned-means
+    family: Nonlinearity & thresholds
+    phase: analysis
+    question: What does mean CSAT look like across PACE bands?
+    method: Mean CSAT by PACE level or quantile band, with 95% CI
+    params: [bins]
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [band table, chart]
+    status: supported
+  - id: lowess-spline
+    family: Nonlinearity & thresholds
+    phase: analysis
+    question: Is the relationship curved?
+    method: LOWESS curve; B-spline vs linear F-test
+    params: [frac, spline_df]
+    requires: {sources: *pace_csat, min_n: 50}
+    outputs: [smoothed curve, linear vs spline R²]
+    status: supported
+  - id: breakpoint-regression
+    family: Nonlinearity & thresholds
+    phase: analysis
+    question: Is there a PACE threshold below which CSAT drops faster?
+    method: Grid-searched single-breakpoint piecewise regression vs linear
+    params: []
+    requires: {sources: *pace_csat, min_n: 50}
+    outputs: [breakpoint, slopes, naive p]
+    guardrails: [Searched breakpoint p-values are optimistic]
+    status: supported
+  - id: nonlinear-dependence
+    family: Nonlinearity & thresholds
+    phase: analysis
+    question: Is there dependence that linear and rank correlation miss?
+    method: Distance correlation and mutual information vs a permutation baseline
+    params: []
+    requires: {sources: *pace_csat, min_n: 50}
+    outputs: [dependence measures]
+    status: supported
+
+  # ------------------------------------------------------------------ Multivariable regression
+  - id: controlled-regression
+    family: Multivariable regression
+    phase: analysis
+    question: What is the PACE-CSAT slope after controlling for market, visit type, season, and restaurant attributes?
+    method: Response-weighted least squares, restaurant-clustered errors
+    params: [controls]
+    requires: {sources: *pace_csat, min_n: 50, optional: {restaurant_attributes: "adds restaurant type, ownership, volume controls"}}
+    outputs: [slope per 10pp with and without controls]
+    status: supported
+  - id: binomial-glm
+    family: Multivariable regression
+    phase: analysis
+    question: How do the odds of a top-box rating change with PACE?
+    method: Binomial GLM on CSAT counts, clustered errors, overdispersion check
+    params: [controls]
+    requires: {sources: *pace_csat, min_n: 50}
+    outputs: [odds ratio per 10pp]
+    status: supported
+  - id: partial-correlation
+    family: Multivariable regression
+    phase: analysis
+    question: What is the PACE-CSAT correlation net of the controls?
+    method: Correlate residuals after regressing both on the controls
+    params: [controls]
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [raw vs partial r]
+    status: supported
+  - id: operational-drivers
+    family: Multivariable regression
+    phase: analysis
+    question: Do staffing, speed of service, or crew tenure explain divergence between PACE and CSAT?
+    method: Add operational covariates to the controlled regression
+    params: []
+    requires: {sources: [pace_product, pace_service, csat_daily, ops_data]}
+    outputs: []
+    status: blocked
+
+  # ------------------------------------------------------------------ Relative importance & shared information
+  - id: dominance-analysis
+    fixed_grain: true
+    family: Relative importance & shared information
+    phase: analysis
+    question: Which PACE components explain the most CSAT variation?
+    method: General dominance (Shapley R² decomposition) over up to 8 components, restaurant grain by default
+    params: [predictors]
+    requires: {sources: *pace_csat, min_n: 50}
+    outputs: [Shapley R² per component]
+    status: supported
+  - id: commonality-analysis
+    fixed_grain: true
+    family: Relative importance & shared information
+    phase: analysis
+    question: How much CSAT variance do PACE Taste and Hospitality explain uniquely vs together?
+    method: Two-predictor commonality, pooled and within market group
+    params: []
+    requires: {sources: *pace_csat, min_n: 50}
+    outputs: [unique and shared R²]
+    status: supported
+  - id: collinearity-check
+    fixed_grain: true
+    family: Relative importance & shared information
+    phase: analysis
+    question: Are the components too correlated to separate?
+    method: Variance inflation factors and condition numbers
+    params: []
+    requires: {sources: *pace_csat}
+    outputs: [VIF table]
+    status: supported
+  - id: index-weight-sensitivity
+    fixed_grain: true
+    family: Relative importance & shared information
+    phase: analysis
+    question: How do GSE KPI rankings move with the PACE/CSAT weight, and which side really drives the index?
+    method: Recompute the index at PACE weights 0.3-0.7; rank correlation, quintile changes, effective variance share
+    params: [pace_weights]
+    requires: {sources: *pace_csat, min_n: 30}
+    outputs: [weight sensitivity, effective weights]
+    status: supported
+
+  # ------------------------------------------------------------------ Reporting
+  - id: chart-pack
+    family: Reporting
+    phase: reporting
+    question: Collect the run's charts plus a scorecard chart
+    method: matplotlib
+    params: []
+    requires: {sources: []}
+    outputs: [charts/*.png]
+    status: supported
+  - id: build-excel-prototype
+    family: Reporting
+    phase: reporting
+    question: Build the Excel analytical prototype (the required output)
+    method: openpyxl workbook with README, Insights, Scorecard, Descriptives, Hypotheses, one sheet per analysis, Restaurant Detail, Data Notes
+    params: []
+    requires: {sources: []}
+    outputs: [<project>_prototype.xlsx]
+    status: supported
+  - id: build-readout
+    family: Reporting
+    phase: reporting
+    question: Write the short insight readout
+    method: Markdown and HTML from insights.json with charts
+    params: []
+    requires: {sources: []}
+    outputs: [insight_readout.md, insight_readout.html]
+    status: supported

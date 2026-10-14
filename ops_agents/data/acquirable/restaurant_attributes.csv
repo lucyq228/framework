@@ -1,0 +1,261 @@
+glin,terr_cd,market,market_group,region,restaurant_type,ownership_type,volume_band,has_drive_thru,has_table_service,has_delivery,has_curbside,has_mccafe,open_date
+195500100007,124,Canada,Canada,Atlantic,Mall / Food Court,Franchised,Low,0,1,1,0,0,2004-04-01
+195500100014,124,Canada,Canada,Ontario,Freestanding,Franchised,High,1,0,1,0,1,1975-11-01
+195500100021,124,Canada,Canada,Quebec,Retail Park,Company Operated,High,1,0,1,1,1,1976-10-01
+195500100028,124,Canada,Canada,Ontario,Retail Park,Franchised,Low,1,0,1,0,1,2011-03-01
+195500100035,124,Canada,Canada,Atlantic,Urban In-line,Franchised,Low,0,1,1,0,1,1978-11-01
+195500100042,124,Canada,Canada,West,Retail Park,Company Operated,Medium,1,0,1,0,1,1985-11-01
+195500100049,124,Canada,Canada,Ontario,Urban In-line,Company Operated,Medium,0,0,1,0,1,1982-09-01
+195500100056,124,Canada,Canada,Quebec,Mall / Food Court,Franchised,Medium,0,1,0,0,1,2005-07-01
+195500100063,124,Canada,Canada,Ontario,Mall / Food Court,Franchised,Low,0,0,0,0,1,1979-12-01
+195500100070,124,Canada,Canada,Ontario,Retail Park,Franchised,Medium,1,1,0,0,0,2010-11-01
+195500100077,124,Canada,Canada,Quebec,Freestanding,Franchised,Medium,1,1,1,1,1,2005-10-01
+195500100084,124,Canada,Canada,Ontario,Freestanding,Franchised,Medium,1,0,1,0,0,2012-10-01
+195500100091,124,Canada,Canada,Ontario,Freestanding,Franchised,Low,1,1,1,1,1,2001-09-01
+195500100098,124,Canada,Canada,Atlantic,Freestanding,Franchised,High,1,1,1,0,1,2008-11-01
+195500100105,124,Canada,Canada,Quebec,Travel / Motorway,Franchised,High,1,1,1,0,0,1985-02-01
+195500100112,124,Canada,Canada,Ontario,Mall / Food Court,Franchised,Low,0,0,1,0,1,1981-05-01
+195500100119,124,Canada,Canada,Atlantic,Urban In-line,Franchised,Medium,0,0,1,0,0,1979-09-01
+195500100126,124,Canada,Canada,Ontario,Mall / Food Court,Franchised,Medium,0,0,1,0,1,1984-06-01
+195500100133,124,Canada,Canada,West,Freestanding,Franchised,High,1,1,0,1,1,1990-05-01
+195500100140,124,Canada,Canada,Quebec,Urban In-line,Franchised,Low,0,0,0,0,1,1997-10-01
+195500100147,124,Canada,Canada,Quebec,Freestanding,Franchised,High,1,0,1,0,1,1977-09-01
+195500100154,124,Canada,Canada,Quebec,Mall / Food Court,Franchised,Low,0,0,1,0,1,1982-05-01
+195500100161,124,Canada,Canada,Quebec,Urban In-line,Franchised,Medium,0,0,1,0,1,2006-10-01
+195500100168,124,Canada,Canada,Ontario,Freestanding,Franchised,High,1,1,1,0,1,2025-11-23
+195500100175,124,Canada,Canada,Ontario,Travel / Motorway,Franchised,High,1,0,0,1,0,1979-03-01
+195500100182,124,Canada,Canada,Quebec,Mall / Food Court,Franchised,Medium,0,0,1,0,1,1983-07-01
+195500100189,124,Canada,Canada,Ontario,Freestanding,Franchised,High,1,0,0,0,0,1996-05-01
+195500100196,124,Canada,Canada,Ontario,Freestanding,Franchised,High,1,0,0,0,1,2011-06-01
+195500100203,124,Canada,Canada,Ontario,Travel / Motorway,Franchised,Medium,1,0,1,1,0,2022-11-01
+195500100210,124,Canada,Canada,Atlantic,Mall / Food Court,Franchised,Medium,0,0,1,0,1,1989-08-01
+195500100217,124,Canada,Canada,Ontario,Freestanding,Franchised,High,1,0,1,0,1,1992-05-01
+195500100224,124,Canada,Canada,Ontario,Urban In-line,Company Operated,High,0,0,1,0,0,1977-03-01
+195500100231,124,Canada,Canada,West,Freestanding,Franchised,Medium,1,0,0,1,1,2011-09-01
+195500100238,124,Canada,Canada,West,Urban In-line,Company Operated,High,0,1,1,0,1,2015-03-01
+195500100245,124,Canada,Canada,West,Freestanding,Company Operated,Medium,1,0,1,1,0,2008-08-01
+195500100252,124,Canada,Canada,Ontario,Freestanding,Franchised,High,1,0,1,1,1,1998-09-01
+195500100259,124,Canada,Canada,Atlantic,Urban In-line,Franchised,Medium,0,0,1,0,1,1997-01-01
+195500100266,124,Canada,Canada,Quebec,Mall / Food Court,Franchised,Low,0,0,1,0,1,1996-08-01
+195500100273,124,Canada,Canada,West,Urban In-line,Franchised,Medium,0,0,0,0,1,1985-10-01
+195500100280,124,Canada,Canada,Ontario,Freestanding,Franchised,Medium,1,0,1,1,1,1985-12-01
+195500100287,124,Canada,Canada,West,Urban In-line,Franchised,High,0,0,1,0,1,1981-07-01
+195500100294,124,Canada,Canada,Quebec,Mall / Food Court,Franchised,Medium,0,0,1,0,1,2014-12-01
+195500100301,124,Canada,Canada,Ontario,Travel / Motorway,Franchised,Medium,1,1,1,0,1,1999-10-01
+195500100308,124,Canada,Canada,Ontario,Freestanding,Franchised,Medium,1,1,1,0,1,1983-08-01
+195500100315,124,Canada,Canada,West,Urban In-line,Franchised,Medium,0,0,1,0,1,1978-11-01
+195500100322,124,Canada,Canada,Quebec,Urban In-line,Franchised,High,0,0,1,0,1,2020-11-01
+195500100329,124,Canada,Canada,Quebec,Retail Park,Franchised,Medium,1,0,1,0,0,2012-04-01
+195500100336,124,Canada,Canada,West,Freestanding,Franchised,High,1,0,1,0,1,2015-03-01
+195500100343,124,Canada,Canada,Quebec,Freestanding,Franchised,Low,1,0,0,0,0,2007-01-01
+195500100350,124,Canada,Canada,West,Retail Park,Company Operated,Low,1,0,1,1,0,2019-05-01
+195500100357,124,Canada,Canada,Ontario,Freestanding,Franchised,Medium,1,1,1,0,0,1983-11-01
+195500100364,124,Canada,Canada,West,Retail Park,Company Operated,Low,1,0,0,1,1,1988-08-01
+195500100371,124,Canada,Canada,Ontario,Freestanding,Franchised,Medium,1,0,0,1,0,2009-06-01
+195500100378,124,Canada,Canada,West,Freestanding,Company Operated,High,1,1,1,0,1,1987-01-01
+195500100385,124,Canada,Canada,West,Freestanding,Franchised,Low,0,1,1,0,1,1997-04-01
+195500100392,124,Canada,Canada,West,Freestanding,Franchised,High,1,0,1,0,1,1997-10-01
+195500100399,124,Canada,Canada,Quebec,Mall / Food Court,Company Operated,Medium,0,1,1,0,1,2001-05-01
+195500100406,124,Canada,Canada,Ontario,Travel / Motorway,Company Operated,High,1,0,1,0,0,2019-06-01
+195500100413,124,Canada,Canada,Ontario,Travel / Motorway,Franchised,Low,1,1,1,0,1,2023-02-01
+195500100420,124,Canada,Canada,Ontario,Mall / Food Court,Franchised,Low,0,0,1,0,1,2008-01-01
+195500100427,124,Canada,Canada,Quebec,Freestanding,Company Operated,Medium,1,0,1,0,0,2009-02-01
+195500100434,124,Canada,Canada,Ontario,Freestanding,Franchised,Low,1,0,1,0,0,2009-10-01
+195500100441,124,Canada,Canada,Ontario,Freestanding,Company Operated,High,1,1,1,1,1,1982-06-01
+195500100448,124,Canada,Canada,West,Freestanding,Franchised,Low,1,1,1,0,1,1996-12-01
+195500100455,124,Canada,Canada,Quebec,Freestanding,Franchised,Low,0,0,1,0,1,1982-10-01
+195500100462,124,Canada,Canada,Quebec,Retail Park,Company Operated,Medium,0,0,1,0,1,1986-09-01
+195500100469,124,Canada,Canada,Ontario,Freestanding,Franchised,Low,1,1,1,0,1,1998-04-01
+195500100476,124,Canada,Canada,Ontario,Freestanding,Franchised,Medium,1,0,1,0,0,2009-08-01
+195500100483,124,Canada,Canada,Ontario,Urban In-line,Franchised,Medium,0,0,1,0,1,2025-08-05
+195500100490,124,Canada,Canada,Atlantic,Retail Park,Franchised,Low,1,1,1,1,1,1990-09-01
+195500100497,124,Canada,Canada,Quebec,Urban In-line,Franchised,Medium,0,0,0,0,1,2006-06-01
+195500100504,124,Canada,Canada,Atlantic,Travel / Motorway,Franchised,Low,1,0,1,1,1,1994-10-01
+195500100511,124,Canada,Canada,Quebec,Mall / Food Court,Franchised,Low,0,0,1,0,1,2009-09-01
+195500100518,124,Canada,Canada,Ontario,Freestanding,Franchised,Medium,1,0,1,0,1,1976-10-01
+195500100525,124,Canada,Canada,Quebec,Freestanding,Franchised,Medium,1,0,1,0,1,1991-02-01
+195500100532,124,Canada,Canada,Quebec,Retail Park,Company Operated,Low,1,0,1,0,1,2012-11-01
+195500100539,124,Canada,Canada,West,Travel / Motorway,Franchised,Medium,1,0,1,1,1,1999-05-01
+195500100546,124,Canada,Canada,Ontario,Retail Park,Franchised,High,1,0,1,1,1,2023-01-01
+195500100553,124,Canada,Canada,Ontario,Urban In-line,Franchised,Low,0,0,1,0,1,1984-09-01
+195500100560,124,Canada,Canada,Atlantic,Urban In-line,Company Operated,Medium,0,1,0,0,0,1980-07-01
+195500100567,124,Canada,Canada,Ontario,Urban In-line,Company Operated,Low,0,0,1,0,1,1999-12-01
+195500100574,124,Canada,Canada,West,Freestanding,Franchised,Medium,1,1,1,1,1,1997-11-01
+195500100581,124,Canada,Canada,Ontario,Urban In-line,Franchised,Medium,0,1,1,0,1,2022-01-01
+195500100588,124,Canada,Canada,Ontario,Mall / Food Court,Franchised,Medium,0,0,1,0,1,1980-08-01
+195500100595,124,Canada,Canada,Ontario,Freestanding,Company Operated,Low,1,0,1,0,1,1977-08-01
+195500100602,124,Canada,Canada,Quebec,Urban In-line,Franchised,Low,0,1,1,0,1,2010-07-01
+195500100609,124,Canada,Canada,Ontario,Urban In-line,Franchised,Low,0,0,1,0,1,1975-04-01
+195500100616,124,Canada,Canada,Ontario,Urban In-line,Franchised,High,0,1,1,0,1,1987-09-01
+195500100623,124,Canada,Canada,Atlantic,Freestanding,Franchised,Medium,1,0,1,0,1,1976-07-01
+195500100630,124,Canada,Canada,West,Freestanding,Franchised,Medium,1,1,1,0,1,2017-08-01
+195500100637,124,Canada,Canada,Ontario,Urban In-line,Franchised,Low,1,0,1,1,0,1978-04-01
+195500100644,124,Canada,Canada,Ontario,Freestanding,Company Operated,Medium,1,0,0,1,1,2014-03-01
+195500100651,124,Canada,Canada,Quebec,Freestanding,Franchised,High,1,0,0,0,1,2011-08-01
+195500100658,124,Canada,Canada,Quebec,Freestanding,Franchised,Medium,1,0,1,0,1,2003-06-01
+195500100665,124,Canada,Canada,Ontario,Urban In-line,Franchised,Medium,0,1,1,0,1,1995-10-01
+195500100672,124,Canada,Canada,Quebec,Freestanding,Franchised,Medium,1,1,1,0,1,1979-02-01
+195500100679,124,Canada,Canada,Quebec,Retail Park,Franchised,Medium,1,0,1,1,0,1995-09-01
+195500100686,124,Canada,Canada,Quebec,Freestanding,Franchised,Low,1,0,1,0,0,1975-12-01
+195500100693,124,Canada,Canada,Atlantic,Urban In-line,Franchised,Medium,0,1,1,0,0,1975-11-01
+195500100700,124,Canada,Canada,Quebec,Urban In-line,Franchised,Medium,0,1,1,0,0,2002-05-01
+195500100707,124,Canada,Canada,Ontario,Retail Park,Franchised,Low,1,0,1,1,1,1991-10-01
+195500100714,124,Canada,Canada,Ontario,Freestanding,Company Operated,Medium,1,0,0,1,1,2022-08-01
+195500100721,124,Canada,Canada,West,Retail Park,Franchised,High,1,0,1,0,0,2002-10-01
+195500100728,124,Canada,Canada,Ontario,Freestanding,Company Operated,High,1,0,1,0,0,2009-07-01
+195500100735,124,Canada,Canada,West,Freestanding,Franchised,Medium,1,1,1,0,1,1991-09-01
+195500100742,124,Canada,Canada,Ontario,Freestanding,Company Operated,Low,1,1,1,1,1,2016-01-01
+195500100749,124,Canada,Canada,Ontario,Retail Park,Franchised,High,1,1,1,0,0,1996-03-01
+195500100756,124,Canada,Canada,Ontario,Freestanding,Franchised,High,1,0,1,0,1,2012-10-01
+195500100763,124,Canada,Canada,Ontario,Urban In-line,Franchised,Low,0,0,1,0,1,2014-09-01
+195500100770,124,Canada,Canada,Atlantic,Mall / Food Court,Company Operated,Medium,0,0,1,0,0,1994-08-01
+195500100777,826,United Kingdom,UK&I,London,Mall / Food Court,Franchised,Medium,0,1,1,0,1,2023-03-01
+195500100784,826,United Kingdom,UK&I,Midlands,Retail Park,Franchised,High,1,1,1,0,0,1991-08-01
+195500100791,826,United Kingdom,UK&I,North,Mall / Food Court,Franchised,Low,0,1,1,0,1,2013-12-01
+195500100798,826,United Kingdom,UK&I,North,Urban In-line,Franchised,High,0,1,1,0,1,2010-06-01
+195500100805,826,United Kingdom,UK&I,Scotland,Freestanding,Franchised,Medium,1,1,1,0,0,1996-03-01
+195500100812,826,United Kingdom,UK&I,London,Freestanding,Franchised,Low,1,1,1,0,0,1975-08-01
+195500100819,826,United Kingdom,UK&I,North,Freestanding,Franchised,Low,1,1,1,0,1,1988-12-01
+195500100826,826,United Kingdom,UK&I,Wales,Freestanding,Franchised,Low,1,1,1,0,1,2011-12-01
+195500100833,826,United Kingdom,UK&I,North,Freestanding,Franchised,Medium,1,1,1,0,0,1975-06-01
+195500100840,826,United Kingdom,UK&I,Midlands,Mall / Food Court,Franchised,Low,0,0,1,0,1,2003-08-01
+195500100847,826,United Kingdom,UK&I,South East,Freestanding,Franchised,Medium,1,1,1,0,1,2023-10-01
+195500100854,826,United Kingdom,UK&I,North,Urban In-line,Company Operated,Low,0,0,0,0,1,1996-01-01
+195500100861,826,United Kingdom,UK&I,London,Freestanding,Franchised,Medium,1,0,1,0,1,1979-05-01
+195500100868,826,United Kingdom,UK&I,North,Freestanding,Franchised,High,1,0,1,0,1,1987-10-01
+195500100875,826,United Kingdom,UK&I,Wales,Urban In-line,Franchised,High,0,1,0,0,1,2013-07-01
+195500100882,826,United Kingdom,UK&I,Scotland,Travel / Motorway,Company Operated,Medium,1,1,1,0,1,1983-06-01
+195500100889,826,United Kingdom,UK&I,Midlands,Retail Park,Franchised,Low,1,1,1,0,1,1999-04-01
+195500100896,826,United Kingdom,UK&I,North,Freestanding,Franchised,High,1,1,1,0,1,2011-04-01
+195500100903,826,United Kingdom,UK&I,London,Freestanding,Company Operated,High,0,1,1,0,1,2004-01-01
+195500100910,826,United Kingdom,UK&I,Scotland,Travel / Motorway,Franchised,High,1,0,1,0,1,2011-11-01
+195500100917,826,United Kingdom,UK&I,London,Urban In-line,Company Operated,Low,0,1,1,0,1,2022-10-01
+195500100924,826,United Kingdom,UK&I,North,Urban In-line,Franchised,High,0,1,1,0,1,2004-02-01
+195500100931,826,United Kingdom,UK&I,North,Mall / Food Court,Franchised,Low,0,0,1,0,1,2023-10-01
+195500100938,826,United Kingdom,UK&I,South East,Retail Park,Franchised,High,1,1,1,0,1,1991-05-01
+195500100945,826,United Kingdom,UK&I,Midlands,Freestanding,Franchised,Low,1,1,1,0,1,2000-06-01
+195500100952,826,United Kingdom,UK&I,North,Freestanding,Franchised,Medium,1,1,1,0,1,2025-11-09
+195500100959,826,United Kingdom,UK&I,Wales,Travel / Motorway,Franchised,High,1,0,1,0,0,1981-10-01
+195500100966,826,United Kingdom,UK&I,London,Freestanding,Franchised,High,1,0,0,0,1,2025-03-07
+195500100973,826,United Kingdom,UK&I,Midlands,Urban In-line,Franchised,High,0,1,1,0,1,1991-11-01
+195500100980,826,United Kingdom,UK&I,London,Freestanding,Franchised,Medium,1,0,1,0,1,1984-11-01
+195500100987,826,United Kingdom,UK&I,North,Urban In-line,Franchised,High,0,0,1,0,0,1977-05-01
+195500100994,826,United Kingdom,UK&I,North,Mall / Food Court,Franchised,Low,0,1,1,0,1,1976-03-01
+195500101001,826,United Kingdom,UK&I,South East,Travel / Motorway,Franchised,Medium,1,1,1,0,1,1983-04-01
+195500101008,826,United Kingdom,UK&I,Scotland,Travel / Motorway,Franchised,High,0,1,1,0,1,1983-08-01
+195500101015,826,United Kingdom,UK&I,Midlands,Mall / Food Court,Company Operated,High,0,0,1,0,1,2016-01-01
+195500101022,826,United Kingdom,UK&I,North,Freestanding,Franchised,High,1,0,1,0,1,2006-10-01
+195500101029,826,United Kingdom,UK&I,North,Travel / Motorway,Franchised,Low,1,0,1,0,1,1987-02-01
+195500101036,826,United Kingdom,UK&I,South East,Freestanding,Franchised,High,1,1,1,0,0,1975-11-01
+195500101043,826,United Kingdom,UK&I,Wales,Freestanding,Franchised,High,1,1,1,0,1,2022-08-01
+195500101050,826,United Kingdom,UK&I,South East,Freestanding,Franchised,Medium,1,1,0,0,1,1979-09-01
+195500101057,826,United Kingdom,UK&I,Midlands,Freestanding,Franchised,High,1,0,0,0,1,2011-07-01
+195500101064,826,United Kingdom,UK&I,London,Urban In-line,Franchised,Medium,1,1,0,0,1,1976-02-01
+195500101071,826,United Kingdom,UK&I,Midlands,Retail Park,Franchised,High,1,1,1,0,1,2013-02-01
+195500101078,826,United Kingdom,UK&I,Midlands,Freestanding,Franchised,Low,1,1,1,0,1,2005-03-01
+195500101085,826,United Kingdom,UK&I,North,Retail Park,Franchised,Low,1,1,1,0,1,1989-02-01
+195500101092,826,United Kingdom,UK&I,Wales,Mall / Food Court,Franchised,Medium,0,1,1,0,0,2020-03-01
+195500101099,826,United Kingdom,UK&I,North,Urban In-line,Franchised,Low,0,1,1,0,1,2019-09-01
+195500101106,826,United Kingdom,UK&I,North,Retail Park,Franchised,High,1,1,0,0,1,1985-08-01
+195500101113,826,United Kingdom,UK&I,Midlands,Retail Park,Franchised,Medium,1,0,1,0,1,1980-09-01
+195500101120,826,United Kingdom,UK&I,North,Freestanding,Franchised,Medium,1,0,1,0,1,1986-10-01
+195500101127,826,United Kingdom,UK&I,Wales,Mall / Food Court,Company Operated,High,0,1,1,0,1,2021-10-01
+195500101134,826,United Kingdom,UK&I,London,Freestanding,Franchised,Low,1,1,1,0,1,2017-08-01
+195500101141,826,United Kingdom,UK&I,North,Mall / Food Court,Franchised,Low,0,0,1,0,1,1977-09-01
+195500101148,826,United Kingdom,UK&I,South East,Freestanding,Franchised,Medium,1,0,1,0,1,1990-07-01
+195500101155,826,United Kingdom,UK&I,London,Urban In-line,Franchised,Low,0,0,1,0,1,2009-07-01
+195500101162,826,United Kingdom,UK&I,London,Retail Park,Franchised,Medium,1,1,1,0,1,1984-12-01
+195500101169,826,United Kingdom,UK&I,London,Freestanding,Franchised,Medium,1,0,1,0,0,2018-11-01
+195500101176,826,United Kingdom,UK&I,North,Travel / Motorway,Franchised,Medium,1,0,1,0,0,2010-05-01
+195500101183,826,United Kingdom,UK&I,Scotland,Urban In-line,Franchised,Low,0,0,1,0,1,1979-12-01
+195500101190,826,United Kingdom,UK&I,London,Freestanding,Franchised,Medium,1,1,0,0,1,1987-12-01
+195500101197,826,United Kingdom,UK&I,North,Travel / Motorway,Franchised,Medium,1,1,1,0,1,2005-06-01
+195500101204,826,United Kingdom,UK&I,London,Freestanding,Franchised,High,1,1,1,0,1,2005-10-01
+195500101211,826,United Kingdom,UK&I,Scotland,Freestanding,Franchised,Low,1,1,1,0,0,2011-06-01
+195500101218,826,United Kingdom,UK&I,North,Mall / Food Court,Franchised,Medium,0,1,1,0,1,1992-05-01
+195500101225,826,United Kingdom,UK&I,North,Urban In-line,Franchised,Low,0,0,1,0,1,1976-04-01
+195500101232,826,United Kingdom,UK&I,North,Freestanding,Franchised,Medium,1,1,1,0,1,2025-05-03
+195500101239,826,United Kingdom,UK&I,North,Urban In-line,Franchised,Medium,0,0,1,0,1,2021-02-01
+195500101246,826,United Kingdom,UK&I,Midlands,Freestanding,Franchised,High,1,1,1,0,0,2025-11-22
+195500101253,826,United Kingdom,UK&I,Wales,Freestanding,Company Operated,Medium,1,0,1,0,0,2001-07-01
+195500101260,826,United Kingdom,UK&I,North,Travel / Motorway,Franchised,Medium,1,0,1,0,1,1993-09-01
+195500101267,826,United Kingdom,UK&I,Midlands,Freestanding,Franchised,Medium,1,1,1,0,1,2007-04-01
+195500101274,826,United Kingdom,UK&I,South East,Urban In-line,Franchised,Medium,0,0,1,0,1,1996-02-01
+195500101281,826,United Kingdom,UK&I,North,Freestanding,Franchised,Medium,1,0,1,0,1,1984-06-01
+195500101288,826,United Kingdom,UK&I,London,Mall / Food Court,Franchised,Low,0,0,1,0,1,2018-12-01
+195500101295,826,United Kingdom,UK&I,Midlands,Freestanding,Company Operated,High,1,0,1,0,0,2006-03-01
+195500101302,826,United Kingdom,UK&I,South East,Travel / Motorway,Franchised,Medium,1,1,1,0,1,1976-02-01
+195500101309,826,United Kingdom,UK&I,Midlands,Freestanding,Franchised,High,1,1,1,0,1,1997-03-01
+195500101316,826,United Kingdom,UK&I,London,Freestanding,Company Operated,Medium,1,1,0,0,0,2016-04-01
+195500101323,826,United Kingdom,UK&I,South East,Travel / Motorway,Franchised,High,1,0,0,0,0,2006-08-01
+195500101330,826,United Kingdom,UK&I,South East,Freestanding,Franchised,Medium,1,1,1,0,1,1994-11-01
+195500101337,826,United Kingdom,UK&I,North,Urban In-line,Company Operated,High,0,1,1,0,1,2008-07-01
+195500101344,826,United Kingdom,UK&I,South East,Freestanding,Franchised,High,1,1,1,0,1,1976-12-01
+195500101351,826,United Kingdom,UK&I,South East,Freestanding,Franchised,High,1,0,1,0,0,2021-09-01
+195500101358,826,United Kingdom,UK&I,Midlands,Urban In-line,Franchised,High,0,1,1,0,0,1987-05-01
+195500101365,826,United Kingdom,UK&I,London,Urban In-line,Company Operated,Low,0,0,1,0,1,1975-06-01
+195500101372,826,United Kingdom,UK&I,South East,Freestanding,Company Operated,Medium,1,0,1,0,1,1987-10-01
+195500101379,826,United Kingdom,UK&I,London,Freestanding,Franchised,Low,1,1,1,0,1,2025-06-04
+195500101386,826,United Kingdom,UK&I,Midlands,Freestanding,Franchised,Medium,1,1,1,0,1,2011-03-01
+195500101393,826,United Kingdom,UK&I,London,Freestanding,Company Operated,Medium,1,1,1,0,0,2017-05-01
+195500101400,826,United Kingdom,UK&I,North,Freestanding,Franchised,Medium,1,0,1,0,1,2013-12-01
+195500101407,826,United Kingdom,UK&I,London,Freestanding,Franchised,Medium,1,1,1,0,1,1995-07-01
+195500101414,826,United Kingdom,UK&I,Midlands,Retail Park,Franchised,Low,1,1,1,0,1,1978-12-01
+195500101421,826,United Kingdom,UK&I,London,Retail Park,Franchised,Medium,1,1,1,0,1,2010-01-01
+195500101428,826,United Kingdom,UK&I,Midlands,Freestanding,Franchised,High,1,1,1,0,1,1995-04-01
+195500101435,826,United Kingdom,UK&I,Midlands,Travel / Motorway,Franchised,Medium,1,1,1,0,1,2014-08-01
+195500101442,826,United Kingdom,UK&I,South East,Freestanding,Franchised,High,1,1,1,0,0,2018-03-01
+195500101449,826,United Kingdom,UK&I,South East,Travel / Motorway,Company Operated,Low,1,1,1,0,1,1999-11-01
+195500101456,826,United Kingdom,UK&I,North,Freestanding,Franchised,Medium,1,1,1,0,1,1977-07-01
+195500101463,826,United Kingdom,UK&I,London,Freestanding,Franchised,High,1,1,1,0,1,2014-04-01
+195500101470,826,United Kingdom,UK&I,Midlands,Urban In-line,Franchised,Medium,0,0,1,0,0,2000-07-01
+195500101477,826,United Kingdom,UK&I,South East,Mall / Food Court,Company Operated,High,0,1,1,0,1,2020-10-01
+195500101484,826,United Kingdom,UK&I,North,Urban In-line,Company Operated,Medium,0,0,1,0,0,1979-09-01
+195500101491,826,United Kingdom,UK&I,South East,Freestanding,Company Operated,High,1,1,1,0,1,2006-01-01
+195500101498,826,United Kingdom,UK&I,North,Freestanding,Company Operated,Medium,1,0,1,0,1,1979-12-01
+195500101505,826,United Kingdom,UK&I,South East,Mall / Food Court,Franchised,Medium,0,1,1,0,1,2014-09-01
+195500101512,826,United Kingdom,UK&I,North,Mall / Food Court,Franchised,Medium,0,1,1,0,1,2003-02-01
+195500101519,826,United Kingdom,UK&I,North,Mall / Food Court,Franchised,Medium,0,0,1,0,1,2025-05-02
+195500101526,826,United Kingdom,UK&I,Midlands,Freestanding,Franchised,Medium,1,1,0,0,0,1982-06-01
+195500101533,826,United Kingdom,UK&I,Midlands,Freestanding,Company Operated,Medium,1,0,1,0,1,2020-02-01
+195500101540,826,United Kingdom,UK&I,London,Travel / Motorway,Franchised,Medium,1,1,1,0,1,2004-05-01
+195500101547,826,United Kingdom,UK&I,London,Freestanding,Franchised,Medium,1,0,1,0,1,1997-05-01
+195500101554,826,United Kingdom,UK&I,Scotland,Travel / Motorway,Franchised,High,1,0,1,0,1,1989-12-01
+195500101561,826,United Kingdom,UK&I,London,Retail Park,Franchised,Medium,1,1,1,0,1,2023-06-01
+195500101568,826,United Kingdom,UK&I,North,Urban In-line,Franchised,Medium,1,0,1,0,1,1979-02-01
+195500101575,826,United Kingdom,UK&I,South East,Freestanding,Franchised,Low,1,1,1,0,1,2023-06-01
+195500101582,826,United Kingdom,UK&I,North,Freestanding,Franchised,Low,1,1,1,0,1,2003-01-01
+195500101589,826,United Kingdom,UK&I,Scotland,Freestanding,Franchised,High,1,1,1,0,0,1995-11-01
+195500101596,826,United Kingdom,UK&I,North,Freestanding,Franchised,High,0,1,1,0,1,1995-05-01
+195500101603,826,United Kingdom,UK&I,Scotland,Mall / Food Court,Company Operated,Medium,0,0,1,0,1,1976-05-01
+195500101610,826,United Kingdom,UK&I,Midlands,Travel / Motorway,Franchised,Low,1,1,1,0,0,1993-08-01
+195500101617,372,Ireland,UK&I,Dublin,Mall / Food Court,Company Operated,Medium,0,0,1,0,1,2006-02-01
+195500101624,372,Ireland,UK&I,Rest of Ireland,Urban In-line,Company Operated,Low,0,0,1,0,1,1989-04-01
+195500101631,372,Ireland,UK&I,Dublin,Urban In-line,Franchised,Medium,0,0,1,0,1,1991-09-01
+195500101638,372,Ireland,UK&I,Dublin,Urban In-line,Franchised,Low,0,0,1,0,0,2015-03-01
+195500101645,372,Ireland,UK&I,Rest of Ireland,Mall / Food Court,Franchised,Low,0,0,0,0,0,1996-12-01
+195500101652,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,Medium,1,1,1,0,0,1987-09-01
+195500101659,372,Ireland,UK&I,Dublin,Freestanding,Franchised,Medium,1,0,1,0,1,2013-07-01
+195500101666,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,Medium,1,1,1,0,1,2007-07-01
+195500101673,372,Ireland,UK&I,Rest of Ireland,Mall / Food Court,Franchised,Medium,0,1,1,0,1,1977-04-01
+195500101680,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,Medium,1,1,1,0,0,2008-04-01
+195500101687,372,Ireland,UK&I,Rest of Ireland,Retail Park,Franchised,Low,1,0,1,0,1,2012-05-01
+195500101694,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,Medium,1,1,0,0,0,2002-08-01
+195500101701,372,Ireland,UK&I,Rest of Ireland,Mall / Food Court,Franchised,Low,0,0,0,0,1,1988-11-01
+195500101708,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,Medium,1,1,1,0,0,2011-04-01
+195500101715,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,Low,1,1,1,0,1,2006-06-01
+195500101722,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,Medium,1,1,1,0,1,1978-03-01
+195500101729,372,Ireland,UK&I,Dublin,Mall / Food Court,Franchised,Low,0,0,1,0,0,2015-03-01
+195500101736,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,High,1,0,0,0,0,1997-05-01
+195500101743,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,Medium,1,1,1,0,1,2016-01-01
+195500101750,372,Ireland,UK&I,Rest of Ireland,Urban In-line,Franchised,Medium,0,0,1,0,0,2017-12-01
+195500101757,372,Ireland,UK&I,Rest of Ireland,Urban In-line,Franchised,Medium,0,1,1,0,0,2018-04-01
+195500101764,372,Ireland,UK&I,Dublin,Freestanding,Franchised,High,1,0,1,0,1,1996-06-01
+195500101771,372,Ireland,UK&I,Rest of Ireland,Urban In-line,Franchised,High,0,1,1,0,0,1978-10-01
+195500101778,372,Ireland,UK&I,Dublin,Urban In-line,Franchised,Low,0,1,0,0,1,2008-12-01
+195500101785,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,Medium,1,0,1,0,1,1992-08-01
+195500101792,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,High,1,1,1,0,1,2007-10-01
+195500101799,372,Ireland,UK&I,Rest of Ireland,Retail Park,Franchised,Low,1,0,0,0,0,1982-05-01
+195500101806,372,Ireland,UK&I,Rest of Ireland,Urban In-line,Franchised,Low,0,1,1,0,1,2011-01-01
+195500101813,372,Ireland,UK&I,Rest of Ireland,Travel / Motorway,Franchised,High,1,0,1,0,1,1987-04-01
+195500101820,372,Ireland,UK&I,Rest of Ireland,Freestanding,Franchised,High,1,0,1,0,0,1985-07-01

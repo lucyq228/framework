@@ -1,0 +1,12 @@
+---
+description: Report PACE-CSAT results as associations, with their uncertainty, never as causes
+alwaysApply: true
+---
+
+# Associations, not causes
+
+- The data is observational. Write "restaurants with higher PACE Hospitality tend to have higher CSAT Hospitality", not "improving PACE raises CSAT" or "PACE drives CSAT".
+- Avoid "impact", "effect of", "drives", "leads to", and "because of" for PACE-CSAT relationships. Regression slopes are "associated differences", for example "+10 pp PACE is associated with +2 pp CSAT".
+- Quote an estimate with its n and CI (or q-value) the first time it appears.
+- When pooled and within-market results differ, lead with the within-market result and say why the pooled one misleads.
+- A null or weak result is a finding. Report it rather than searching for a cut that "works"; every extra cut is a follow-up that goes through FDR.

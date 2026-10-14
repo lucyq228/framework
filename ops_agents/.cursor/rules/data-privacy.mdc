@@ -1,0 +1,12 @@
+---
+description: Keep raw rows and the planted ground truth out of the conversation and out of hand-written code
+alwaysApply: true
+---
+
+# Data privacy and tool discipline
+
+- Never read, print, `head`, `tail`, sample, or grep files in `data/raw/`, `data/reference/`, `data/acquirable/`, `data/*.xlsx`, `runs/*/datasets/`, or `runs/*/results/*.csv`. Work from the JSON artifacts, which hold only schema facts and aggregates.
+- **Never open anything in `synthetic/`.** It holds the planted ground truth used to test the agents; reading it invalidates the run.
+- Reading `context/` (brief, data dictionary, deck images and their JPG previews) is allowed and expected.
+- Do not write ad-hoc analysis code. All calculations go through the skill scripts in `.cursor/skills/*/scripts/`. If a script cannot do what is needed, report it to the manager as a tool gap.
+- Never put API keys, passwords, or personal data in chat, logs, or files.

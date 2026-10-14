@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "hooks": {
+    "subagentStart": [
+      { "command": "python .cursor/hooks/log_event.py", "timeout": 10 }
+    ],
+    "subagentStop": [
+      { "command": "python .cursor/hooks/log_event.py", "timeout": 10 }
+    ],
+    "postToolUse": [
+      { "command": "python .cursor/hooks/log_event.py", "matcher": "Shell", "timeout": 10 }
+    ]
+  }
+}

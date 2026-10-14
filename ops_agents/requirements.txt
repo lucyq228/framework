@@ -1,0 +1,12 @@
+numpy>=2.4
+pandas>=3.0
+scipy>=1.17
+statsmodels>=0.15
+scikit-learn>=1.9
+matplotlib>=3.11
+openpyxl>=3.1
+pyarrow>=26
+PyYAML>=6.0
+pillow>=12
+pillow-heif>=1.8
+pytest>=9

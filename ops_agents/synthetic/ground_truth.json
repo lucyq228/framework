@@ -1,0 +1,97 @@
+{
+  "seed": 27,
+  "period": [
+    "2025-01-01",
+    "2026-09-30"
+  ],
+  "note": "Planted signals for tool validation. Agents must not read this folder.",
+  "latent": {
+    "taste_hosp_restaurant_corr": 0.45,
+    "monthly_ar1_phi": 0.6,
+    "monthly_dev_sd": 0.6,
+    "csat_local_unmeasured_sd": 0.35
+  },
+  "pace_effects": {
+    "market_shift": {
+      "Canada": 0.0,
+      "United Kingdom": 0.9,
+      "Ireland": 0.7
+    },
+    "rgrv": "scores capability (no monthly deviation) plus restaurant prep bonus N(0.7, 0.5); CFV scores the visit month's execution",
+    "product_category": {
+      "Beef": 0.0,
+      "Chicken": -0.2,
+      "Fries": -0.5,
+      "Beverage": 0.6,
+      "Dessert": -0.4,
+      "Hot Coffee": 0.2,
+      "McCafe Food": 0.1,
+      "McCafe Drink": 0.0
+    },
+    "channel": {
+      "Drive Thru": -0.35,
+      "In Restaurant": 0.0,
+      "Delivery": -0.2,
+      "Curbside": 0.1
+    },
+    "touchpoint": {
+      "order": 0.1,
+      "pay": 0.3,
+      "present": -0.1,
+      "care": -0.35
+    }
+  },
+  "csat_effects": {
+    "market_shift": {
+      "Canada": 0.15,
+      "United Kingdom": -0.6,
+      "Ireland": -0.35
+    },
+    "hosp_sensitivity_by_presented_channel": {
+      "Drive Thru": 0.45,
+      "Front Counter": 0.3,
+      "Table Service": 0.3,
+      "Curbside": 0.2
+    },
+    "mobile_placed_sensitivity_reduction": 0.12,
+    "hosp_threshold": "extra slope 0.6 below latent -0.9 (nonlinear drop)",
+    "taste_sensitivity": 0.3,
+    "seasonality": "hospitality -0.12 Jul-Aug, -0.08 Dec; taste -0.05 Jan-Feb",
+    "restaurant_type_hosp": {
+      "Freestanding": 0.0,
+      "Urban In-line": 0.05,
+      "Mall / Food Court": -0.15,
+      "Travel / Motorway": -0.35,
+      "Retail Park": 0.0
+    }
+  },
+  "expected_findings": [
+    "Simpson's paradox: UK&I has higher PACE but lower CSAT, so pooled cross-market correlation is attenuated or reversed while within-market correlation is positive.",
+    "CSAT measured in the same month as the PACE visit correlates better than annual CSAT (time alignment).",
+    "Announced RGRV pass rates are inflated by a restaurant-specific prep bonus; the RGRV-CFV gap varies by restaurant and RGRV tracks same-month CSAT slightly worse than CFV.",
+    "Hospitality correlation is strongest for Drive Thru presented orders and weakest for Mobile-placed orders.",
+    "Low-volume restaurants have few monthly CSAT responses; reliability weighting or a minimum-n rule is needed.",
+    "Hospitality CSAT drops non-linearly for the weakest executors (threshold below the latent -0.9 point).",
+    "Travel / Motorway restaurants have lower CSAT hospitality that PACE does not explain (divergence).",
+    "About 35% of restaurant-level CSAT variance comes from local factors PACE does not measure."
+  ],
+  "data_quality_issues": {
+    "csat_high_gt_answered_rows": 748,
+    "csat_duplicate_rows": 499,
+    "product_duplicate_rows": 28,
+    "restaurants_without_csat": [
+      "195500100469",
+      "195500100609",
+      "195500101757"
+    ],
+    "dessert_unavailable_rate": 0.04,
+    "local_question_codes": [
+      "Q9a-CA",
+      "Q10a-UK",
+      "Q27a-CA",
+      "DT5-CA"
+    ],
+    "date_format": "mm/dd/yy strings",
+    "general_service_area": "RGR-only 'Service' questions are not channel-specific"
+  }
+}

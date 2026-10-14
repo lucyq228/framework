@@ -1,0 +1,5 @@
+local_question_code,global_question_code,survey_type,category,mapping_status,notes
+Q9a-CA,Q9a,Product,Beef,confirmed,Canada localised wording of the global beef check
+Q10a-UK,Q10a,Product,Chicken,proposed,UK&I chicken/veggie item; Veggie Dippers inclusion pending validation
+Q27a-CA,,Product,Local Core,unmapped,Local core product; no global equivalent. Weighting rule pending exception-market validation
+DT5-CA,DT5,Service,Drive Thru present,confirmed,Canada bilingual wording of DT5
